@@ -36,21 +36,18 @@ export class SigninComponent {
 
   signIn() {
     this.authService.signInUser(this.signin).subscribe(
-        (user) => {
-          if (user === null) {
-            console.error('Invalid credentials');
-
-          }
-          else if (user) {
-            this.router.navigate(['/user-view']);
-          }
-          else {
-            console.error('Invalid credentials');
-          }
-        },
-        (error) => {
-          console.error('Error signing in:', error);
+      (user) => {
+        if (user) {
+          // Guarda el usuario en localStorage
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate(['/user-view']);
+        } else {
+          console.error('Invalid credentials');
         }
+      },
+      (error) => {
+        console.error('Error signing in:', error);
+      }
     );
   }
 }

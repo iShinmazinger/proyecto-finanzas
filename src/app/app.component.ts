@@ -4,6 +4,7 @@ import {ToolbarComponent} from "./components/toolbar/toolbar.component";
 import {SigninComponent} from "./components/signin/signin.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {UserViewComponent} from "./components/user-view/user-view.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import {UserViewComponent} from "./components/user-view/user-view.component";
       ToolbarComponent,
     SigninComponent,
     RegisterComponent,
-    UserViewComponent
+    UserViewComponent,
+    FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
