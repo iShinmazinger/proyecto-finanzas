@@ -1,0 +1,73 @@
+.toolbar {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.top-bar {
+  background-color: red;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  color: white;
+  font-size: 20px;
+}
+.store-icon {
+  content: url('https://img.icons8.com/?size=100&id=84923&format=png&color=FFFFFF');
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.right-column {
+  background-color: #FAFAFA;
+  width: 300px;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+
+.option {
+  color: black;
+  text-decoration: none;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 30px;
+}
+
+.option:hover {
+  text-decoration: none;
+  background-color: #B9B4B4;
+  width: 300px;
+}
+
+.option-icon {
+  content: url('https://img.icons8.com/?size=100&id=83190&format=png&color=000000');
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.option-icon2 {
+  content: url('https://img.icons8.com/?size=100&id=8186&format=png&color=000000');
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
+
+}
+.option-icon3 {
+  content: url('https://img.icons8.com/?size=100&id=41414&format=png&color=000000');
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
+}

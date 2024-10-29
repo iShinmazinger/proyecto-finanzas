@@ -1,0 +1,36 @@
+<div class="register-container">
+    <div class="register-content">
+        <div class="register-image">
+            <img src="https://via.placeholder.com/150" alt="Register image" />
+        </div>
+
+        <div class="register-form">
+            <h1>Crear cuenta</h1>
+            <p>
+                Para empezar a usar la aplicación, por favor regístrate o
+                <a routerLink="/signin">inicia sesión</a>
+            </p>
+
+            <form (ngSubmit)="register()">
+
+                <input matInput placeholder="Usuario" [(ngModel)]="user.usuario" name="usuario" required>
+                <input matInput placeholder="Email" [(ngModel)]="user.email" name="email" required>
+                <input matInput placeholder="Telefono" [(ngModel)]="user.telefono" name="telefono" required>
+                <input matInput placeholder="Foto" [(ngModel)]="user.foto" name="photo" required>
+                <input matInput placeholder="Contraseña" type="password" [(ngModel)]="user.contrasena" name="contrasena" required>
+
+                <div class="password-info">
+                    <p>La contraseña debe tener:</p>
+                    <ul>
+                        <li>Un carácter en mayúsculas y otro en minúsculas</li>
+                        <li>Un número</li>
+                        <li>Un carácter especial</li>
+                        <li>8 caracteres mínimo</li>
+                    </ul>
+                </div>
+
+                <button type="submit" (click)="register()" >Regístrate</button>
+            </form>
+        </div>
+    </div>
+</div>

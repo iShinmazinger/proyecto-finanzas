@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "usuario": "user1",
+      "email": "user1@example.com",
+      "telefono": "123-456-7890",
+      "contrasena": "User1Pass",
+      "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1Ut5O-nhXIDuHii9kcT4DRWco34ZwAH2Vw&s"
+    },
+    {
+      "id": "ed77",
+      "usuario": "Messo",
+      "email": "Messo@gmail.com",
+      "telefono": "999999999",
+      "contrasena": "Sobble08",
+      "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1Ut5O-nhXIDuHii9kcT4DRWco34ZwAH2Vw&s"
+    },
+    {
+      "id": "c27e",
+      "usuario": "A",
+      "email": "A@gmail.com",
+      "telefono": "999999999",
+      "contrasena": "A",
+      "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1Ut5O-nhXIDuHii9kcT4DRWco34ZwAH2Vw&s"
+    },
+    {
+      "id": "dc17",
+      "usuario": "A",
+      "email": "A@gmail.com",
+      "telefono": "999999999",
+      "contrasena": "A",
+      "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1Ut5O-nhXIDuHii9kcT4DRWco34ZwAH2Vw&s"
+    }
+  ]
+}

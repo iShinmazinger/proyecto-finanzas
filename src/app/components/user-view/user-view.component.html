@@ -1,0 +1,29 @@
+<div *ngIf="user; else noUser">
+    <div class="profile-container">
+        <h1>Mi Perfil</h1>
+
+        <div class="profile-content">
+            <div class="profile-image">
+                <img [src]="user.foto" alt="User photo" />
+            </div>
+
+            <div class="profile-details">
+                <form (ngSubmit)="onUpdate()">
+                    <input [(ngModel)]="user.usuario" name="username" />
+                    <input [(ngModel)]="user.email" name="email" type="email" />
+                    <input [(ngModel)]="user.telefono" name="phone" />
+                    <input [(ngModel)]="user.contrasena" name="password" />
+                    <input [(ngModel)]="user.foto" name="photo" />
+
+                    <div class="button-group">
+                        <button type="submit">Actualizar Perfil</button>
+                        <button type="button" (click)="onDelete()">Eliminar Perfil</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noUser>
+    <p>User not found.</p>
+</ng-template>

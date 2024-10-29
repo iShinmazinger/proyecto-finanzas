@@ -1,0 +1,21 @@
+<div class="login-container">
+  <div class="login-content">
+    <div class="login-image">
+      <img src="https://via.placeholder.com/150" alt="Login image" />
+    </div>
+
+    <div class="login-form">
+      <h1>Bienvenido</h1>
+      <p>
+        Para usar la aplicación, por favor inicia sesión o
+        <a routerLink="/register">regístrate</a>
+      </p>
+
+        <form (ngSubmit)="signIn()">
+            <input placeholder="Email" type="email" [(ngModel)]="signin.email" name="email" required>
+            <input placeholder="Contraseña" type="password" [(ngModel)]="signin.contrasena" name="contrasena" required>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+  </div>
+</div>
