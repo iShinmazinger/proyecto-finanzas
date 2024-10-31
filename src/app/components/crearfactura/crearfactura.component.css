@@ -1,24 +1,28 @@
 .factura-container {
     font-family: 'Roboto', sans-serif;
-    width: 100%; /* Ancho completo del contenedor */
-    max-width: 900px; /* Ancho máximo para el contenedor */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 8px; /* Bordes redondeados */
-    background: #ffffff; /* Color de fondo */
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border-radius: 8px; 
+    background: #ffffff; 
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1); 
 }
 
 mat-form-field {
-    display: block; /* Asegura que cada campo ocupa toda la línea */
-    width: 100%; /* Asegura que cada campo usa todo el ancho disponible */
-    margin-bottom: 50px; /* Espacio uniforme entre los campos */
+    
+    width: 100%; 
+    margin-bottom: 50px; 
 }
 
-/* Ajusta el botón para que ocupe el ancho completo */
+
 button {
-    width: 100%; /* Hacer que el botón ocupe todo el ancho del contenedor */
-    margin-top: 16px; /* Espacio superior para separarlo de los campos anteriores */
+    width: 100%; 
+    margin-top: 16px; 
 }
+mat-datepicker-toggle {
+    vertical-align: middle; /* Alinea el ícono verticalmente con el input */
+}
+
 
 
