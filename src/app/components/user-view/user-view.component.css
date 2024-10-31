@@ -10,7 +10,8 @@
     padding: 30px;
     background-color: white;
     width: 50%;
-    transform: translateY(-800px);
+    transform: translateY(100px);
+    
 }
 
 .profile-content {

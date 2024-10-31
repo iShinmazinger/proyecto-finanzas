@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-800px);
+  
   font-family: 'Roboto', sans-serif;
   margin-right: 100px;
 }

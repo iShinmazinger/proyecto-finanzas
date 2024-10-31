@@ -39,7 +39,6 @@ export class SigninComponent {
       (user) => {
         if (user) {
           // Guarda el usuario en localStorage
-          localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/user-view']);
         } else {
           console.error('Invalid credentials');

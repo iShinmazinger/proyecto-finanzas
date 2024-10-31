@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="factura-container"> 
+    <h2>Registro de Factura</h2>
+  
+    <form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Fecha de Emisión</mat-label>
+        <input matInput [matDatepicker]="fechaEmisionPicker" formControlName="fechaEmision" required>
+        <mat-datepicker-toggle matSuffix [for]="fechaEmisionPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fechaEmisionPicker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Fecha de Vencimiento</mat-label>
+        <input matInput [matDatepicker]="fechaVencimientoPicker" formControlName="fechaVencimiento" required>
+        <mat-datepicker-toggle matSuffix [for]="fechaVencimientoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fechaVencimientoPicker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Monto</mat-label>
+        <input matInput type="number" formControlName="monto" min="0" required>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Tasa</mat-label>
+        <mat-select formControlName="tasa" required>
+          <mat-option value="" disabled>Seleccione la Tasa</mat-option>
+          <mat-option value="Nominal">Nominal</mat-option>
+          <mat-option value="Efectiva">Efectiva</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Porcentaje de Tasa</mat-label>
+        <input matInput type="number" formControlName="porcentajeTasa" min="0" required>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Capitalización</mat-label>
+        <mat-select formControlName="capitalizacion" required>
+          <mat-option value="" disabled>Seleccione la Capitalización</mat-option>
+          <mat-option value="Diaria">Diaria</mat-option>
+          <mat-option value="Quincenal">Quincenal</mat-option>
+          <mat-option value="Mensual">Mensual</mat-option>
+          <mat-option value="Trimestral">Trimestral</mat-option>
+          <mat-option value="Semestral">Semestral</mat-option>
+          <mat-option value="Anual">Anual</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Botón de Envío -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="facturaForm.invalid">
+        Registrar Factura
+      </button>
+    </form>
+</div>
+</body>
+</html>
