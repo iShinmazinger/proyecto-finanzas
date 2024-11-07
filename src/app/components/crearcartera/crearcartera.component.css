@@ -1,0 +1,77 @@
+.cartera-container { 
+    font-family: 'Roboto', sans-serif;
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    border-radius: 8px; 
+    background: #ffffff; 
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+h2 {
+    text-align: center;
+    color: #3f51b5;
+    margin-bottom: 20px;
+}
+
+mat-form-field {
+    width: 100%; 
+    margin-bottom: 20px; 
+}
+
+button {
+    width: 100%; 
+    margin-top: 16px; 
+    padding: 12px;
+    font-size: 16px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #303f9f;
+}
+
+button[disabled] {
+    background-color: #b0bec5;
+    cursor: not-allowed;
+}
+
+mat-select, mat-datepicker {
+    font-size: 14px;
+}
+
+mat-select.mat-select {
+    font-size: 14px;
+}
+
+mat-option {
+    font-size: 14px;
+}
+
+mat-input-element {
+    font-size: 14px;
+}
+
+mat-datepicker-toggle {
+    vertical-align: middle; 
+}
+
+.cartera-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cartera-container form .mat-form-field {
+    margin-bottom: 16px;
+}
+
+.cartera-container form button {
+    margin-top: 20px;
+}

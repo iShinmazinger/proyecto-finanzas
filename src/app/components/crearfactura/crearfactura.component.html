@@ -10,6 +10,10 @@
     <h2>Registro de Factura</h2>
   
     <form [formGroup]="facturaForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nombre del Cliente</mat-label>
+      <input matInput formControlName="cliente" required>
+    </mat-form-field>
       <mat-form-field>
         <mat-label>Fecha de Emisión</mat-label>
         <input matInput [matDatepicker]="fechaEmisionPicker" formControlName="fechaEmision" required>
@@ -24,6 +28,14 @@
         <mat-datepicker #fechaVencimientoPicker></mat-datepicker>
       </mat-form-field>
   
+      <mat-form-field>
+        <mat-label>Moneda</mat-label>
+        <mat-select formControlName="moneda" required>
+          <mat-option value="Soles">Soles</mat-option>
+          <mat-option value="Dólares">Dólares</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
       <mat-form-field>
         <mat-label>Monto</mat-label>
         <input matInput type="number" formControlName="monto" min="0" required>
@@ -56,7 +68,6 @@
         </mat-select>
       </mat-form-field>
   
-      <!-- Botón de Envío -->
       <button mat-raised-button color="primary" type="submit" [disabled]="facturaForm.invalid">
         Registrar Factura
       </button>

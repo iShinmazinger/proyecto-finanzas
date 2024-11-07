@@ -1,1 +1,17 @@
-<p>verfactura works!</p>
+<div class="facturas-container">
+    <mat-card *ngFor="let facture of facturas" class="factura-card">
+      <mat-card-header>
+        <mat-card-title>Factura ID: {{ facture.id }}</mat-card-title>
+        <mat-card-subtitle>Cliente: {{ facture.cliente }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Fecha de emisión:</strong> {{ facture.fechaEmision | date: 'shortDate' }}</p>
+        <p><strong>Fecha de vencimiento:</strong> {{ facture.fechaVencimiento | date: 'shortDate' }}</p>
+        <p><strong>Moneda:</strong> {{ facture.moneda}}</p>
+        <p><strong>Monto:</strong> {{ facture.monto | currency }}</p>
+        <p><strong>Tipo de tasa:</strong> {{ facture.tipoTasa }}</p>
+        <p><strong>Porcentaje de tasa:</strong> {{ facture.porcentajeTasa }}%</p>
+        <p><strong>Capitalización:</strong> {{ facture.capitalizacion }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -1,0 +1,9 @@
+.facturas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .factura-card {
+    width: 300px;
+  }

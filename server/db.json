@@ -32,5 +32,106 @@
       "contrasena": "A",
       "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY1Ut5O-nhXIDuHii9kcT4DRWco34ZwAH2Vw&s"
     }
+  ],
+  "facturas": [
+    {
+      "id": "001",
+      "fechaEmision": "2023-11-01",
+      "fechaVencimiento": "2023-12-01",
+      "moneda": "Soles",
+      "monto": 1500,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 5,
+      "capitalizacion": "Mensual",
+      "cliente": "Cliente A"
+    },
+    {
+      "id": "002",
+      "fechaEmision": "2023-10-15",
+      "fechaVencimiento": "2023-11-15",
+      "moneda": "Dólares",
+      "monto": 2000,
+      "tipoTasa": "Efectiva",
+      "porcentajeTasa": 3.5,
+      "capitalizacion": "Anual",
+      "cliente": "Cliente B"
+    },
+    {
+      "cliente": "UPC",
+      "fechaEmision": "2024-09-05T05:00:00.000Z",
+      "fechaVencimiento": "2024-12-05T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 1050,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 5,
+      "capitalizacion": "Mensual",
+      "id": "hk3avh5"
+    },
+    {
+      "cliente": "Interbank",
+      "fechaEmision": "2024-11-04T05:00:00.000Z",
+      "fechaVencimiento": "2025-02-04T05:00:00.000Z",
+      "moneda": "Dólares",
+      "monto": 5000,
+      "tipoTasa": "Efectiva",
+      "porcentajeTasa": 10.5,
+      "capitalizacion": "Mensual",
+      "id": "B3AatFx"
+    },
+    {
+      "cliente": "Mocha",
+      "fechaEmision": "2024-11-07T05:00:00.000Z",
+      "fechaVencimiento": "2025-05-10T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 77777,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 8,
+      "capitalizacion": "Mensual",
+      "id": "JlaB1rD"
+    }
+  ],
+  "carteras": [
+    {
+      "nombreCartera": "Cartera 3",
+      "moneda": "Soles",
+      "fechaLiquidacion": "2024-10-09T05:00:00.000Z",
+      "banco": "Interbank",
+      "tasaDescuento": 7,
+      "facturas": [
+        {
+          "cliente": "Interbank",
+          "fechaEmision": "2024-11-04T05:00:00.000Z",
+          "fechaVencimiento": "2025-02-04T05:00:00.000Z",
+          "moneda": "Dólares",
+          "monto": 5000,
+          "tipoTasa": "Efectiva",
+          "porcentajeTasa": 10.5,
+          "capitalizacion": "Mensual",
+          "id": "B3AatFx"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "nombreCartera": "Cartera en Soles",
+      "moneda": "Soles",
+      "fechaLiquidacion": "2024-10-11T05:00:00.000Z",
+      "banco": "BBVA",
+      "tasaDescuento": 5,
+      "facturas": [
+        {
+          "cliente": "Mocha",
+          "fechaEmision": "2024-11-07T05:00:00.000Z",
+          "fechaVencimiento": "2025-05-10T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 77777,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 8,
+          "capitalizacion": "Mensual",
+          "id": "JlaB1rD"
+        }
+      ],
+      "id": 2
+    }
   ]
 }

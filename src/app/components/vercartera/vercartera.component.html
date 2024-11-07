@@ -1,0 +1,25 @@
+<div class="cartera-container">
+    <h2>Listado de Carteras</h2>
+  
+    <mat-card *ngFor="let cartera of carteras" class="cartera-card">
+      <mat-card-header>
+        <mat-card-title>{{ cartera.nombreCartera }}</mat-card-title>
+        <mat-card-subtitle>{{cartera.moneda}}</mat-card-subtitle>
+        <mat-card-subtitle>Facturas asociadas</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let factura of cartera.facturas">
+            {{ factura.cliente }} - {{ factura.monto | currency: moneda }}
+          </li>
+        </ul>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="liquidarCartera(cartera)">
+          Liquidar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

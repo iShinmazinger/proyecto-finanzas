@@ -1,0 +1,52 @@
+<div class="cartera-container">
+    <h2>Crear Cartera</h2>
+  
+    <form [formGroup]="carteraForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Nombre de la Cartera</mat-label>
+        <input matInput formControlName="nombreCartera" required>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Tipo de Moneda</mat-label>
+        <mat-select formControlName="moneda" (selectionChange)="onMonedaChange($event)" required>
+          <mat-option value="Soles">Soles</mat-option>
+          <mat-option value="Dólares">Dólares</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Fecha de Liquidación</mat-label>
+        <input matInput [matDatepicker]="fechaLiquidacionPicker" formControlName="fechaLiquidacion" (dateChange)="onFechaChange($event)" required>
+        <mat-datepicker-toggle matSuffix [for]="fechaLiquidacionPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fechaLiquidacionPicker></mat-datepicker>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Banco</mat-label>
+        <mat-select formControlName="banco" required>
+          <mat-option value="BCP">BCP</mat-option>
+          <mat-option value="Interbank">Interbank</mat-option>
+          <mat-option value="BBVA">BBVA</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Tasa de Descuento</mat-label>
+        <input matInput type="number" formControlName="tasaDescuento" min="0" required>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Facturas</mat-label>
+        <mat-select formControlName="facturas" multiple required>
+          <mat-option *ngFor="let factura of facturasFiltradas" [value]="factura">
+            {{ factura.cliente }} - {{ factura.monto }} {{ factura.moneda }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="carteraForm.invalid">
+        Crear Cartera
+      </button>
+    </form>
+  </div>

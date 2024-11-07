@@ -8,6 +8,8 @@ import { CrearfacturaComponent } from './components/crearfactura/crearfactura.co
 import { CrearletraComponent } from './components/crearletra/crearletra.component';
 import { VerfacturaComponent } from './components/verfactura/verfactura.component';
 import { VerletraComponent } from './components/verletra/verletra.component';
+import { CrearcarteraComponent } from './components/crearcartera/crearcartera.component';
+import { VercarteraComponent } from './components/vercartera/vercartera.component';
 
 export const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -15,6 +17,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'user-view', component: UserViewComponent },
   { path: 'crearfactura', component: CrearfacturaComponent},
+  { path: 'crearcartera', component: CrearcarteraComponent},
+  { path: 'vercartera', component: VercarteraComponent},
   { path: 'crearletra', component: CrearletraComponent},
   { path: 'verfactura', component: VerfacturaComponent},
   { path: 'verletra', component: VerletraComponent},
