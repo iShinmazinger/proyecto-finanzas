@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',

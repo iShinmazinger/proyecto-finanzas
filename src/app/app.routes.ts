@@ -10,6 +10,7 @@ import { VerfacturaComponent } from './components/verfactura/verfactura.componen
 import { VerletraComponent } from './components/verletra/verletra.component';
 import { CrearcarteraComponent } from './components/crearcartera/crearcartera.component';
 import { VercarteraComponent } from './components/vercartera/vercartera.component';
+import { LiquidacionComponent } from './components/liquidacion/liquidacion.component';
 
 export const routes: Routes = [
   { path: '', component: SigninComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'crearletra', component: CrearletraComponent},
   { path: 'verfactura', component: VerfacturaComponent},
   { path: 'verletra', component: VerletraComponent},
+  { path: 'liquidacion/:id', component: LiquidacionComponent },
 ];
 
 @NgModule({

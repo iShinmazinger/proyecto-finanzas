@@ -1,0 +1,32 @@
+<div *ngIf="tasaEfectivaAnual !== null">
+    <p><strong>Tasa Efectiva Anual:</strong> {{ tasaEfectivaAnual | number: '1.2-4' }}%</p>
+  </div>
+  <div *ngIf="valoresNetos.length > 0">
+    <h2>Valores Netos por Factura</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Factura ID</th>
+          <th>Cliente</th>
+          <th>Valor Neto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factura of valoresNetos">
+          <td>{{ factura.id }}</td>
+          <td>{{ factura.cliente }}</td>
+          <td>{{ factura.valorNeto !== null ? (factura.valorNeto | number: '1.2-2') : 'Error' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="valoresNetos.length === 0">
+    <p>No se encontraron valores netos para las facturas.</p>
+  </div>
+  <h3>TCEA de la Cartera: {{ tceaCartera | number: '1.2-4' }}%</h3>
+  <div *ngFor="let factura of valoresNetos">
+    <p>Factura ID: {{ factura.id }}</p>
+    <p>Cliente: {{ factura.cliente }}</p>
+    <p>Valor Neto: {{ factura.valorNeto }}</p>
+    <p>Costo Total: {{ factura.costoTotal }}</p>
+  </div>

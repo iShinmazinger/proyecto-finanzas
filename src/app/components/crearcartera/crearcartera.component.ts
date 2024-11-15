@@ -39,7 +39,10 @@ export class CrearcarteraComponent implements OnInit {
       moneda: ['', Validators.required],
       fechaLiquidacion: ['', Validators.required],
       banco: ['', Validators.required],
-      tasaDescuento: [0, [Validators.required, Validators.min(0)]],
+      tasa: ['', Validators.required],
+      porcentajeTasa: ['', [Validators.required, Validators.min(0)]],
+      capitalizacion1: ['', Validators.required],
+      capitalizacion2: ['', Validators.required],
       facturas: [[], Validators.required]
     });
     
@@ -64,28 +67,34 @@ export class CrearcarteraComponent implements OnInit {
       this.carteras = carterasData || []; 
       
       this.filtrarPorCartera();
-
-      // Filtrar las facturas según la moneda
       this.onMonedaChange({ value: this.carteraForm.get('moneda')?.value });
 
-      // Filtrar las facturas según la fecha de liquidación
       const fechaLiquidacion = new Date(this.carteraForm.get('fechaLiquidacion')?.value);
-      this.onFechaChange({ value: fechaLiquidacion });
+      if (fechaLiquidacion) {
+        this.onFechaChange({ value: fechaLiquidacion });
+      }
+      this.carteraForm.get('fechaLiquidacion')?.valueChanges.subscribe(fecha => {
+        const fechaSeleccionada = new Date(fecha);
+        this.onFechaChange({ value: fechaSeleccionada });
+      });
+      this.carteraForm.get('moneda')?.valueChanges.subscribe(moneda => {
+        this.onMonedaChange({ value: moneda });
+      });
     });
   }
   onMonedaChange(event: any): void {
     const monedaSeleccionada = event.value;
-    this.facturasFiltradas = this.facturas.filter(factura => 
-      factura.moneda === monedaSeleccionada
-    );
-    this.filtrarPorCartera();
-  }
-  onFechaChange(event: any): void {
-    const fechaSeleccionada = event.value; 
-  this.facturasFiltradas = this.facturas.filter(factura =>
-    new Date(factura.fechaVencimiento) >= new Date(fechaSeleccionada) 
+  this.facturasFiltradas = this.facturas.filter(factura => 
+    factura.moneda === monedaSeleccionada && new Date(factura.fechaVencimiento) >= new Date(this.carteraForm.get('fechaLiquidacion')?.value)
   );
   this.filtrarPorCartera();
+  }
+  onFechaChange(event: any): void {
+    const fechaSeleccionada = new Date(event.value);
+    this.facturasFiltradas = this.facturas.filter(factura =>
+      new Date(factura.fechaVencimiento) >= fechaSeleccionada && factura.moneda === this.carteraForm.get('moneda')?.value
+    );
+    this.filtrarPorCartera();
   }
   
   filtrarPorCartera(): void {
@@ -97,7 +106,6 @@ export class CrearcarteraComponent implements OnInit {
     });
   });
 
-  // Filtrar las facturas que no están en ninguna cartera
   this.facturasFiltradas = this.facturasFiltradas.filter(factura =>
     !facturasEnCarteras.has(factura.id) 
   );
