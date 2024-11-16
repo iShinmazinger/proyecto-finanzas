@@ -1,5 +1,5 @@
 <div *ngIf="tasaEfectivaAnual !== null">
-    <p><strong>Tasa Efectiva Anual:</strong> {{ tasaEfectivaAnual | number: '1.2-4' }}%</p>
+    <p><strong>Tasa Efectiva </strong> <strong>{{cartera.capitalizacion1}}:</strong> {{ tasaEfectivaAnual | number: '1.2-4' }}%</p>
   </div>
   <div *ngIf="valoresNetos.length > 0">
     <h2>Valores Netos por Factura</h2>

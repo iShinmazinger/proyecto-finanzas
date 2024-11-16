@@ -15,7 +15,7 @@ export class LiquidacionComponent implements OnInit {
   tasaEfectivaAnual: number | null = null;
   valoresNetos: any[] = [];
   tceaCartera: number = 0;
-  capitalizacionFrecuencias: { [key: string]: number } = {
+  capitalizacionFrecuenciasMensual: { [key: string]: number } = {
     'Anual': 360,
     'Semestral': 180,
     'Cuatrimestral': 120,
@@ -24,6 +24,26 @@ export class LiquidacionComponent implements OnInit {
     'Mensual': 30,
     'Quincenal': 15,
     'Diaria': 1
+  };
+  capitalizacionConversionQuincenal: { [key: string]: number } = {
+    'Anual': 24,
+    'Semestral': 12,
+    'Cuatrimestral': 8,
+    'Trimestral': 6,
+    'Bimestral': 4,
+    'Mensual': 2,
+    'Quincenal': 1,
+    'Diaria': 1/15
+  };
+  capitalizacionPeriodoTrimestral: { [key: string]: number } = {
+    'Anual': 4,
+    'Semestral': 2,
+    'Cuatrimestral': 4/3,
+    'Trimestral': 1,
+    'Bimestral': 2/3,
+    'Mensual': 1/3,
+    'Quincenal': 1/6,
+    'Diaria': 1/90
   };
 
   constructor(
@@ -42,9 +62,9 @@ export class LiquidacionComponent implements OnInit {
   }
   
   calcularTasaEfectivaAnual(): void {
-    if (this.cartera && this.cartera.tasa === 'Nominal') {
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion2 === 'Mensual' && this.cartera.capitalizacion1==='Anual') {
       const tasaNominal = this.cartera.porcentajeTasa / 100;
-      const frecuencia = this.capitalizacionFrecuencias[this.cartera.capitalizacion2]; 
+      const frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
 
       if (frecuencia) {
         this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
@@ -53,6 +73,531 @@ export class LiquidacionComponent implements OnInit {
         this.tasaEfectivaAnual = null;
       }
     }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Anual' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=360/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    //Tasas Semestrales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Semestral' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=180/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasas nominales cuatrimestrales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Cuatrimestral' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=120/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasa Nominal Trimestrales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Trimestral' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=90/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasas Nominales Bimestrales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Bimestral' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=60/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasas Nominales Mensuales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Mensual' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=30/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasas Nominales Quincenales
+
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Quincenal' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=15/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
+    //Tasas Nominales Diarias
+
+    if (this.cartera && (this.cartera.tasa === 'Nominal' || this.cartera.tasa === 'Efectiva') && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Diaria') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Quincenal') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Mensual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Bimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Trimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Cuatrimestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Semestral') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+    if (this.cartera && this.cartera.tasa === 'Nominal' && this.cartera.capitalizacion1 === 'Diaria' && this.cartera.capitalizacion2==='Anual') {
+      const tasaNominal = this.cartera.porcentajeTasa / 100;
+      let frecuencia = this.capitalizacionFrecuenciasMensual[this.cartera.capitalizacion2]; 
+      frecuencia=1/frecuencia
+      if (frecuencia) {
+        this.tasaEfectivaAnual = (Math.pow(1 + tasaNominal / frecuencia, frecuencia) - 1) * 100;
+      }
+    }
+
   }
   calcularValoresNetosPorFactura(): void {
     if (this.cartera && this.tasaEfectivaAnual !== null) {

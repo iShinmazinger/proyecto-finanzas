@@ -132,6 +132,50 @@
       "porcentajeTasa": 10,
       "capitalizacion": "Trimestral",
       "id": "gnVtnOt"
+    },
+    {
+      "cliente": "FacturaDiaria1",
+      "fechaEmision": "2025-01-02T05:00:00.000Z",
+      "fechaVencimiento": "2026-01-02T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 1000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 10,
+      "capitalizacion": "Mensual",
+      "id": "p183MBD"
+    },
+    {
+      "cliente": "FacturaDiaria2",
+      "fechaEmision": "2025-01-09T05:00:00.000Z",
+      "fechaVencimiento": "2026-01-10T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 1000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 10,
+      "capitalizacion": "Trimestral",
+      "id": "hyn_Hg9"
+    },
+    {
+      "cliente": "Facturafinal1",
+      "fechaEmision": "2024-06-05T05:00:00.000Z",
+      "fechaVencimiento": "2026-03-05T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 2000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 15,
+      "capitalizacion": "Mensual",
+      "id": "3rxqC8S"
+    },
+    {
+      "cliente": "Facturafinal2",
+      "fechaEmision": "2023-04-07T05:00:00.000Z",
+      "fechaVencimiento": "2026-07-09T05:00:00.000Z",
+      "moneda": "Soles",
+      "monto": 2000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 14,
+      "capitalizacion": "Bimestral",
+      "id": "aJWaoc7"
     }
   ],
   "carteras": [
@@ -204,6 +248,111 @@
         }
       ],
       "id": 2
+    },
+    {
+      "nombreCartera": "FacturaDiaria",
+      "moneda": "Soles",
+      "fechaLiquidacion": "2025-07-16T05:00:00.000Z",
+      "banco": "BCP",
+      "tasa": "Nominal",
+      "porcentajeTasa": 12,
+      "capitalizacion1": "Anual",
+      "capitalizacion2": "Diaria",
+      "facturas": [
+        {
+          "cliente": "FacturaDiaria1",
+          "fechaEmision": "2025-01-02T05:00:00.000Z",
+          "fechaVencimiento": "2026-01-02T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 1000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 10,
+          "capitalizacion": "Mensual",
+          "id": "p183MBD"
+        },
+        {
+          "cliente": "FacturaDiaria2",
+          "fechaEmision": "2025-01-09T05:00:00.000Z",
+          "fechaVencimiento": "2026-01-10T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 1000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 10,
+          "capitalizacion": "Trimestral",
+          "id": "hyn_Hg9"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "nombreCartera": "CarteraBimestral",
+      "moneda": "Soles",
+      "fechaLiquidacion": "2023-12-07T05:00:00.000Z",
+      "banco": "Interbank",
+      "tasa": "Nominal",
+      "porcentajeTasa": 12,
+      "capitalizacion1": "Bimestral",
+      "capitalizacion2": "Quincenal",
+      "facturas": [
+        {
+          "cliente": "UPC",
+          "fechaEmision": "2024-09-05T05:00:00.000Z",
+          "fechaVencimiento": "2024-12-05T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 1050,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 5,
+          "capitalizacion": "Mensual",
+          "id": "hk3avh5"
+        },
+        {
+          "cliente": "Mocha",
+          "fechaEmision": "2024-11-07T05:00:00.000Z",
+          "fechaVencimiento": "2025-05-10T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 77777,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 8,
+          "capitalizacion": "Mensual",
+          "id": "JlaB1rD"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "nombreCartera": "CarteraFinal1",
+      "moneda": "Soles",
+      "fechaLiquidacion": "2025-07-03T05:00:00.000Z",
+      "banco": "BBVA",
+      "tasa": "Efectiva",
+      "porcentajeTasa": 10,
+      "capitalizacion1": "Trimestral",
+      "capitalizacion2": "Trimestral",
+      "facturas": [
+        {
+          "cliente": "Facturafinal1",
+          "fechaEmision": "2024-06-05T05:00:00.000Z",
+          "fechaVencimiento": "2026-03-05T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 2000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 15,
+          "capitalizacion": "Mensual",
+          "id": "3rxqC8S"
+        },
+        {
+          "cliente": "Facturafinal2",
+          "fechaEmision": "2023-04-07T05:00:00.000Z",
+          "fechaVencimiento": "2026-07-09T05:00:00.000Z",
+          "moneda": "Soles",
+          "monto": 2000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 14,
+          "capitalizacion": "Bimestral",
+          "id": "aJWaoc7"
+        }
+      ],
+      "id": 5
     }
   ]
 }
