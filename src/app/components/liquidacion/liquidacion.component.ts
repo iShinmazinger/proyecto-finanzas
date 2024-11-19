@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-liquidacion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule, MatTableModule,MatButtonModule,MatInputModule],
   templateUrl: './liquidacion.component.html',
   styleUrl: './liquidacion.component.css'
 })
@@ -14,6 +18,7 @@ export class LiquidacionComponent implements OnInit {
   cartera: any;
   tasaEfectivaAnual: number | null = null;
   valoresNetos: any[] = [];
+  displayedColumns: string[] = ['id', 'cliente', 'valorNeto'];
   tceaCartera: number = 0;
   capitalizacionFrecuenciasMensual: { [key: string]: number } = {
     'Anual': 360,

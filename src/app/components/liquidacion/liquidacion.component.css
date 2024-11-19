@@ -1,0 +1,43 @@
+.container {
+    max-width: 800px; /* Ancho máximo del contenido */
+    margin-left: 0; /* Alinea el contenedor al lado izquierdo */
+    padding: 16px;
+  }
+  
+  .mat-card {
+    margin-bottom: 16px;
+  }
+  
+  .table-container {
+    overflow-x: auto; /* Permite scroll horizontal en tablas grandes */
+  }
+  
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  p {
+    margin: 8px 0;
+  }
+  
+  h3 {
+    margin: 0;
+  }
+  
+  /* Espacio reservado para la sección derecha */
+  body {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  aside {
+    width: 000px; /* Ancho de la sección fija en la derecha */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh; /* Altura completa de la pantalla */
+    background-color: #f4f4f4; /* Color de fondo para distinguirla */
+    padding: 0px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }

@@ -1,32 +1,68 @@
-<div *ngIf="tasaEfectivaAnual !== null">
-    <p><strong>Tasa Efectiva </strong> <strong>{{cartera.capitalizacion1}}:</strong> {{ tasaEfectivaAnual | number: '1.2-4' }}%</p>
-  </div>
-  <div *ngIf="valoresNetos.length > 0">
-    <h2>Valores Netos por Factura</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Factura ID</th>
-          <th>Cliente</th>
-          <th>Valor Neto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let factura of valoresNetos">
-          <td>{{ factura.id }}</td>
-          <td>{{ factura.cliente }}</td>
-          <td>{{ factura.valorNeto !== null ? (factura.valorNeto | number: '1.2-2') : 'Error' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div *ngIf="valoresNetos.length === 0">
-    <p>No se encontraron valores netos para las facturas.</p>
-  </div>
-  <h3>TCEA de la Cartera: {{ tceaCartera | number: '1.2-4' }}%</h3>
+<div class="container">
+  <mat-card *ngIf="tasaEfectivaAnual !== null" class="mat-card">
+    <mat-card-content>
+      <p>
+        <strong>Tasa Efectiva </strong>
+        <strong>{{ cartera.capitalizacion1 }}:</strong> 
+        {{ tasaEfectivaAnual | number: '1.2-4' }}%
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="valoresNetos.length > 0" class="mat-card">
+    <mat-card-header>
+      <mat-card-title>Valores Netos por Factura</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="valoresNetos" class="mat-elevation-z8 table-container">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Factura ID </th>
+          <td mat-cell *matCellDef="let factura"> {{ factura.id }} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="cliente">
+          <th mat-header-cell *matHeaderCellDef> Cliente </th>
+          <td mat-cell *matCellDef="let factura"> {{ factura.cliente }} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="valorNeto">
+          <th mat-header-cell *matHeaderCellDef> Valor Neto </th>
+          <td mat-cell *matCellDef="let factura">
+            {{ factura.valorNeto !== null ? (factura.valorNeto | number: '1.2-2') : 'Error' }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="valoresNetos.length === 0" class="mat-card">
+    <mat-card-content>
+      <p>No se encontraron valores netos para las facturas.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mat-card">
+    <mat-card-content>
+      <h3>TCEA de la Cartera: {{ tceaCartera | number: '1.2-4' }}%</h3>
+    </mat-card-content>
+  </mat-card>
+
   <div *ngFor="let factura of valoresNetos">
-    <p>Factura ID: {{ factura.id }}</p>
-    <p>Cliente: {{ factura.cliente }}</p>
-    <p>Valor Neto: {{ factura.valorNeto }}</p>
-    <p>Costo Total: {{ factura.costoTotal }}</p>
+    <mat-card class="mat-card">
+      <mat-card-content>
+        <p>Factura ID: {{ factura.id }}</p>
+        <p>Cliente: {{ factura.cliente }}</p>
+        <p>Valor Neto: {{ factura.valorNeto }}</p>
+        <p>Costo Total: {{ factura.costoTotal }}</p>
+      </mat-card-content>
+    </mat-card>
   </div>
+</div>
+
+
+<aside>
+  
+</aside>
