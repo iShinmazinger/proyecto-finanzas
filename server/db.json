@@ -176,6 +176,28 @@
       "porcentajeTasa": 14,
       "capitalizacion": "Bimestral",
       "id": "aJWaoc7"
+    },
+    {
+      "cliente": "Facturadef1",
+      "fechaEmision": "2025-01-01T05:00:00.000Z",
+      "fechaVencimiento": "2025-12-31T05:00:00.000Z",
+      "moneda": "Dólares",
+      "monto": 10000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 10,
+      "capitalizacion": "Bimestral",
+      "id": "Zc3ZTJC"
+    },
+    {
+      "cliente": "FacturaDef2",
+      "fechaEmision": "2025-01-01T05:00:00.000Z",
+      "fechaVencimiento": "2025-12-31T05:00:00.000Z",
+      "moneda": "Dólares",
+      "monto": 20000,
+      "tipoTasa": "Nominal",
+      "porcentajeTasa": 10,
+      "capitalizacion": "Bimestral",
+      "id": "dI3iRyi"
     }
   ],
   "carteras": [
@@ -353,6 +375,41 @@
         }
       ],
       "id": 5
+    },
+    {
+      "nombreCartera": "Carteradef1",
+      "moneda": "Dólares",
+      "fechaLiquidacion": "2025-06-30T05:00:00.000Z",
+      "banco": "Interbank",
+      "tasa": "Efectiva",
+      "porcentajeTasa": 10,
+      "capitalizacion1": "Bimestral",
+      "capitalizacion2": "Bimestral",
+      "facturas": [
+        {
+          "cliente": "Facturadef1",
+          "fechaEmision": "2025-01-01T05:00:00.000Z",
+          "fechaVencimiento": "2025-12-31T05:00:00.000Z",
+          "moneda": "Dólares",
+          "monto": 10000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 10,
+          "capitalizacion": "Bimestral",
+          "id": "Zc3ZTJC"
+        },
+        {
+          "cliente": "FacturaDef2",
+          "fechaEmision": "2025-01-01T05:00:00.000Z",
+          "fechaVencimiento": "2025-12-31T05:00:00.000Z",
+          "moneda": "Dólares",
+          "monto": 20000,
+          "tipoTasa": "Nominal",
+          "porcentajeTasa": 10,
+          "capitalizacion": "Bimestral",
+          "id": "dI3iRyi"
+        }
+      ],
+      "id": 6
     }
   ]
 }

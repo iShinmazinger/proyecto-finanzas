@@ -607,11 +607,36 @@ export class LiquidacionComponent implements OnInit {
   calcularValoresNetosPorFactura(): void {
     if (this.cartera && this.tasaEfectivaAnual !== null) {
       const fechaLiquidacion = new Date(this.cartera.fechaLiquidacion);
-      const n = 360; 
+      let n = 360; 
       let valorNominalTotal = 0; 
       let valorNetoTotal = 0;    
       let sumaPonderadaNd = 0;   
       let sumaValoresNominales = 0;
+      if(this.cartera.capitalizacion1==='Anual'){
+        n=360
+      }
+      if(this.cartera.capitalizacion1==='Semestral'){
+        n=180
+      }
+      if(this.cartera.capitalizacion1==='Cuatrimestral'){
+        n=120
+      }
+      if(this.cartera.capitalizacion1==='Trimestral'){
+        n=90
+      }
+      if(this.cartera.capitalizacion1==='Bimestral'){
+        n=60
+      }
+      if(this.cartera.capitalizacion1==='Mensual'){
+        n=30
+      }
+      if(this.cartera.capitalizacion1==='Quincenal'){
+        n=15
+      }
+      if(this.cartera.capitalizacion1==='Diaria'){
+        n=1
+      }
+      
 
       this.valoresNetos = this.cartera.facturas.map((factura: any) => {
         const fechaVencimiento = new Date(factura.fechaVencimiento);
@@ -648,8 +673,9 @@ export class LiquidacionComponent implements OnInit {
         }
       });
       if (valorNominalTotal > 0 && valorNetoTotal > 0 && sumaValoresNominales > 0) {
+        const diasanual= 360;
         const ndPromedio = sumaPonderadaNd / sumaValoresNominales; 
-        this.tceaCartera = Math.pow(1 + (valorNominalTotal - valorNetoTotal) / valorNominalTotal, n / ndPromedio) - 1;
+        this.tceaCartera = Math.pow(1 + (valorNominalTotal - valorNetoTotal) / valorNominalTotal, diasanual / ndPromedio) - 1;
         this.tceaCartera=this.tceaCartera*100;
         console.log('TCEA de la cartera:', this.tceaCartera * 100); 
       } else {
